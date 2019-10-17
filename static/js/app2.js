@@ -14,24 +14,17 @@ var geojsonMarkerOptions = {
 	fillOpacity: 0.8
 };
 
-// var greenIcon = L.icon({
-// 	iconUrl: 'cannon.jpg',
-// 	shadowUrl: 'cannon.jpg',
-
-	// iconSize:     [38, 95], // size of the icon
-	// shadowSize:   [50, 64], // size of the shadow
-	// iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-	// shadowAnchor: [4, 62],  // the same for the shadow
-	// popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-
 
 // // // Create function to create circular features
 function createFeatures(militaryBases) {
-  // console.log("-----------");
-  // console.log(militaryBases.features["geometry"].coordinates);
+  console.log("-----------");
+  console.log(militaryBases.features["geometry"].coordinates);
   var darpa = L.geoJson(militaryBases,{
     pointToLayer: function (features, latlng) {
-      return L.circleMarker(latlng, geojsonMarkerOptions);
+      return L.circleMarker(latlng, geojsonMarkerOptions)
+      .bindPopup("<h3>" + "Location: " + features.properties[0] +
+      "</h3><hr><p>" + "Date/Time: " + new Date (features.properties) + "<br>" +
+      "Magnitude: " + features.properties + "</p>");
     }
   });
 
@@ -68,7 +61,7 @@ function createMap(darpa) {
   };
 
   // Create our map
-  var myMap = L.map("map_military", {
+  var myMap = L.map("map", {
     center: [37.6872, -97.3301],
     zoom: 5,
     layers: [lightmap, darpa]
