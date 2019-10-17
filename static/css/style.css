@@ -132,7 +132,10 @@ select {
   animation: subtitle 1.2s forwards linear;
   animation-delay: 1.2s;
 }
-
+/* This is for the Text Highlighter */
+.highlight {
+  background-color: yellow;
+}
 /* input placeholder color changes */
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
